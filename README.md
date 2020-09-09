@@ -1,2 +1,3 @@
 # gesthispania
-prueba laboral
+Aplicación web de prueba para GestHispania
+ 
