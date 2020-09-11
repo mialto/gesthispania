@@ -91,8 +91,17 @@ function pie(){
     ?>
         </main>
         <footer class="bg-dark">
-            illoooo!!!
-            <?php echo " estoy logado =>" . $_SESSION['logado'];?>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <p>Desarrollado por: Miguel Ángel López Torralba<br><a href="mailto:miguel.a.torralba@gmail.com">miguel.a.torralba@gmail.com</a></p>
+                        <a href="http://mialtoweb.es" target="_blank"><img src="assets/img/mialtoweblogo.png"></a>
+                    </div>
+                    <div class="col-md-4">
+                        <?php echo " estoy logado =>" . $_SESSION['logado'];?>
+                    </div>
+                </div>
+            </div>
         </footer>
     </body>
     </html>
