@@ -1,6 +1,9 @@
 <?php
 session_start();
-if(!isset($_SESSION['logado'])){
+if(isset($_SESSION['logado']) && $_SESSION['logado']=='si'){
+    header('Location: secretaria/datos.php');//=>va a la principal no a datos
+}else{
+    $_SESSION['logado'] = 'no';
     include('template/template.php');
     cabecera('index');
     menu('index');
@@ -15,7 +18,7 @@ if(!isset($_SESSION['logado'])){
                     </div>
                     <div class="card-body">
                         aqui el formulario!!!
-                        <p>¿No tienes cuenta? <a href="views/registro">Registrate aquí!</a></p>
+                        <p>¿No tienes cuenta? <a href="secretaria/registro">Registrate aquí!</a></p>
                     </div>
                 </div>
             </div>
@@ -24,8 +27,6 @@ if(!isset($_SESSION['logado'])){
     </div>
     <?php
     pie();
-}else{
-    header('Location: views/datos.php');
 }
 
 ?>

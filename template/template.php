@@ -29,8 +29,8 @@ function cabecera($vista='general'){
             ';
         }else{
             echo '<link rel="stylesheet" href="../assets/css/css.css">';
-            echo '<link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.min.css">
-            ';
+            echo '<link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.min.css">';
+            echo '<script src="../assets/js/js.js"></script>';
         }
         ?>
     </head>
@@ -71,7 +71,7 @@ function menu($vista='general'){
                 <li class="nav-item"><a href="#" clas="nav-link">Cursos por titulación</a></li>
                 <li class="nav-item"><a href="#" clas="nav-link">Asignaturas</a></li>
                 <?php
-                if(isset($_SESSION['logado'])){
+                if(isset($_SESSION['logado']) && $_SESSION['logado'] == 'si'){
                     echo '<li class="nav-item"><a href="#" clas="nav-link"><i class="fa fa-user" aria-hidden="true"></i>
                     Usuario</a></li>';
                 }
@@ -92,6 +92,7 @@ function pie(){
         </main>
         <footer class="bg-dark">
             illoooo!!!
+            <?php echo " estoy logado =>" . $_SESSION['logado'];?>
         </footer>
     </body>
     </html>

@@ -5,4 +5,6 @@
  */
 
 include("../template/template.php");
+include("controller.php");
+include("conexion.php");
 ?>
