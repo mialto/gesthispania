@@ -1,3 +1,7 @@
+.campo_en_linea{
+    font-weight: bold;
+}
+
 footer{
     margin-top: 100px;
     padding-top: 40px;
@@ -10,4 +14,19 @@ footer{
 
 .logo_cabecera{
     height: 40px;
+}
+
+.mostrar_datos{
+    font-size:20px;
+}
+
+.nav-link{
+    padding:5px;
+    color: #fff;
+}
+
+.separador50{
+    margin:0 auto;
+    width: 100%;
+    height: 50px;
 }

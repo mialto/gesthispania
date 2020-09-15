@@ -48,46 +48,40 @@ function menu($vista='general'){
     ?>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
         <a href="#" class="navbar-brand"><img src="assets/img/gest.png" class="logo_cabecera"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#colapsado">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="colapsado">
-            <ul class="navbar-nav">   
-                <li class="nav-item"><a href="#" clas="nav-link">Cursos por titulación</a></li>
-                <li class="nav-item"><a href="#" clas="nav-link">Asignaturas</a></li>
-            </ul> 
-        </div>    
     </nav>
     <?php
     }else{
-    ?>
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-        <a href="#" class="navbar-brand"><img src="../assets/img/gest.png" class="logo_cabecera"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#colapsado">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="colapsado">
-            <ul class="navbar-nav">   
-                <li class="nav-item"><a href="#" clas="nav-link">Cursos por titulación</a></li>
-                <li class="nav-item"><a href="#" clas="nav-link">Asignaturas</a></li>
-                <?php
-                if(isset($_SESSION['logado']) && $_SESSION['logado'] == 'si'){
-                    echo '<li class="nav-item"><a href="#" clas="nav-link"><i class="fa fa-user" aria-hidden="true"></i>
-                    Usuario</a></li>';
-                }
-                ?>
-                
-            </ul> 
-        </div>    
-    </nav>
-    <?php       
+        if(isset($_SESSION['logado']) && $_SESSION['logado'] == 'si'){
+        ?>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top ">
+            <a href="#" class="navbar-brand"><img src="../assets/img/gest.png" class="logo_cabecera"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#colapsado">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="colapsado">
+                <ul class="navbar-nav ml-auto">   
+                    <li class="nav-item"><a href="#" class="nav-link">Cursos por titulación</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Asignaturas</a></li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbardrop"><i class="fa fa-user" aria-hidden="true"></i> <?php echo " " . $_SESSION['nombre'];?></a>
+                        <div class="dropdown-menu">
+                            <a href="perfil" class="dropdown-item">Perfil</a>
+                            <a href="modificarusuario" class="dropdown-item">Editar perfil</a>
+                            <a href="cerrar.php" class="dropdown-item">Salir</a>
+                        </div>
+                    </li>
+                </ul> 
+            </div>    
+        </nav>
+    <?php
+        }       
     }
     ?>
     <main class="mt-5">
     <?php
 }
 
-function pie(){
+function pie($vista='general'){
     ?>
         </main>
         <footer class="bg-dark">
@@ -95,7 +89,13 @@ function pie(){
                 <div class="row">
                     <div class="col-md-4">
                         <p>Desarrollado por: Miguel Ángel López Torralba<br><a href="mailto:miguel.a.torralba@gmail.com">miguel.a.torralba@gmail.com</a></p>
-                        <a href="http://mialtoweb.es" target="_blank"><img src="assets/img/mialtoweblogo.png"></a>
+                    <?php
+                    if($vista == 'index'){
+                        echo '<a href="http://mialtoweb.es" target="_blank"><img src="assets/img/mialtoweblogo.png"></a>';
+                    }else{
+                        echo '<a href="http://mialtoweb.es" target="_blank"><img src="../assets/img/mialtoweblogo.png"></a>';
+                    }
+                    ?>
                     </div>
                     <div class="col-md-4">
                         <?php echo " estoy logado =>" . $_SESSION['logado'];?>

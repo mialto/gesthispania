@@ -52,7 +52,7 @@ if($_SESSION['logado'] == 'no'){
         }else{
             $mysqli = conexion();
             $pass = md5($pas1);
-            $sentencia = "INSERT INTO usuarios (nombre, apellidos, email, pass) VALUES ('$nombre','$apellidos','$mail','$pass')";
+            $sentencia = "INSERT INTO usuarios (nombre, apellidos, email, pass, rol) VALUES ('$nombre','$apellidos','$mail','$pass', 'usuario')";
             if(!($resultado = $mysqli->query($sentencia))) {
                 echo "Error al ejecutar la sentencia <b>$sentencia</b>;: " . $mysqli->error . "\n";
                 exit;

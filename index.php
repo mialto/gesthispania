@@ -37,7 +37,7 @@ if(isset($_SESSION['logado']) && $_SESSION['logado']=='si'){
         </div>
     </div>
     <?php
-    pie();
+    pie('index');
 }
 
 ?>
