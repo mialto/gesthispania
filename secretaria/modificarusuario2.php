@@ -23,7 +23,6 @@ if(isset($_SESSION['logado']) && $_SESSION['logado']=='si'){
  
         //hacemos las validaciones en servidor, of course :)
         if ($nombre == ""){
-            echo "patata";
             $errores[] = "El nombre no puede estar vacío";
         } 
         if (!preg_match("/^[a-záéíóúA-ZÁÉÍÓÚ ]*$/", $nombre)){

@@ -7,8 +7,9 @@ if(isset($_SESSION['logado']) && $_SESSION['logado']=='si'){
     ?>
     <div class="container mt-5">
         <div class="row mt-5">
+            <?php //mostrarCursos();?>
             <div class="col-sm-12 mt-4">
-                listar cursos
+                listar cursos en solitario
             </div>
         </div>
         <?php
