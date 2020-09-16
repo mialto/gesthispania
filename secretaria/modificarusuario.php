@@ -12,7 +12,7 @@ if(isset($_SESSION['logado']) && $_SESSION['logado']=='si'){
                 <div id="errores" class=""></div>
             </div>  
         </div>
-        <form method="POST"  action="modificarusario2">
+        <form method="POST"  action="modificarusuario2">
             <div class="row">
                 <div class="col-sm-6 mt-3">
                     <label for="nombre">Nombre</label>

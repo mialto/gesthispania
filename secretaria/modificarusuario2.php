@@ -1,6 +1,6 @@
 <?php
 session_start();
-if($_SESSION['logado'] == 'no'){
+if(isset($_SESSION['logado']) && $_SESSION['logado']=='si'){
     if($_POST){
         include('../app/nodo.php');
         $nombre = $_POST['nombre'];
@@ -52,24 +52,24 @@ if($_SESSION['logado'] == 'no'){
         }else{
             $mysqli = conexion();
             $pass = md5($pas1);
-            $sentencia = "INSERT INTO usuarios (nombre, apellidos, email, pass, rol) VALUES ('$nombre','$apellidos','$mail','$pass', 'usuario')";
+            $id = $_SESSION['id'];
+            $sentencia = "UPDATE usuarios SET nombre='$nombre', apellidos='$apellidos', email='$mail', pass='$pass' WHERE id=$id";
+            //$sentencia = "INSERT INTO usuarios (nombre, apellidos, email, pass, rol) VALUES ('$nombre','$apellidos','$mail','$pass', 'usuario')";
             if(!($resultado = $mysqli->query($sentencia))) {
                 echo "Error al ejecutar la sentencia <b>$sentencia</b>;: " . $mysqli->error . "\n";
                 exit;
             }
             // Libera la memoria ocupada por el resultado
             $mysqli->close();
-            header("Location: index.php");
+            header("Location: perfil");
             
         }
     }else{
         //enviar a pagina principal
         header("Location: index.php");
     }
-    
 }else{
-    //envia a la pagina principal!
-    header("Location: index.php");
+    header('Location: ../index.php');//=>va a la principal no a datos
 }
 
 ?>
