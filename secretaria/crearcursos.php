@@ -26,7 +26,11 @@ if(isset($_SESSION['logado']) && $_SESSION['logado']=='si' && $_SESSION['rol'] =
                 </div>
                 <div class="col-sm-6 mt-3">
                     <label for="titulacion">Titulación</label>
-                    <input type="text" name="titulacion" id="titulacion" class="form-control" required>
+                    <select class="form-control" id="titulacion" name="titulacion" required>
+                        <?php
+                        optionsTitulaciones();
+                        ?>
+                    </select>
                 </div>
             </div>
             <div class="row">

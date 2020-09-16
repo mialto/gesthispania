@@ -30,7 +30,9 @@ function cabecera($vista='general'){
         }else{
             echo '<link rel="stylesheet" href="../assets/css/css.css">';
             echo '<link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.min.css">';
+            echo '<link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">';
             echo '<script src="../assets/js/js.js"></script>';
+            echo '<script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>';
         }
         ?>
     </head>
@@ -59,8 +61,9 @@ function menu($vista='general'){
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="colapsado">
-                <ul class="navbar-nav ml-auto">   
-                    <li class="nav-item"><a href="#" class="nav-link">Cursos por titulación</a></li>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="titulaciones" class="nav-link">Titulaciones</a></li>   
+                    <li class="nav-item"><a href="cursos" class="nav-link">Cursos</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">Asignaturas</a></li>
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbardrop"><i class="fa fa-user" aria-hidden="true"></i> <?php echo " " . $_SESSION['nombre'];?></a>
@@ -98,7 +101,6 @@ function pie($vista='general'){
                     ?>
                     </div>
                     <div class="col-md-4">
-                        <?php echo " estoy logado =>" . $_SESSION['logado'];?>
                     </div>
                 </div>
             </div>
