@@ -63,6 +63,11 @@ function mostrarCursos(){
                 <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 109.633px;" aria-label="">Titulación</th>
                 <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 252.517px;" aria-label="">Duración</th>
                 <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 115.067px;" aria-label="">Año académico</th>
+                <?php
+                if($_SESSION['rol'] == 'admin'){
+                    echo '<th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 115.067px;" aria-label="">Acciones</th>';
+                }
+                ?>         
             </tr>
         </thead>
         <tbody>
@@ -79,6 +84,11 @@ function mostrarCursos(){
             <td><?php echo $fila['titulacion']?></td>
             <td><?php echo $fila['duracion']?></td>
             <td><?php echo $fila['anno_academico']?></td>
+            <?php
+                if($_SESSION['rol'] == 'admin'){
+                    echo '<td><a href="" class="btn btn-warning btn-sm">Asignaturas</a></td>';
+                }
+                ?>    
         </tr>
         <?php
         $contador++;
