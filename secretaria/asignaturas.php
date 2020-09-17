@@ -9,8 +9,8 @@ if(isset($_SESSION['logado']) && $_SESSION['logado']=='si'){
         <div class="separador50"></div>
         <div class="row mt-5">
             <div class="col-sm-12 mt-4">
-                <h1>Cursos</h1>
-                <?php mostrarCursos();?>
+                <h1>Asignaturas</h1>
+                <?php mostrarAsignaturas();?>
 
             </div>
         </div>
@@ -19,7 +19,7 @@ if(isset($_SESSION['logado']) && $_SESSION['logado']=='si'){
             ?>
             <div class="row mt-5">
                 <div class="col-sm-12">
-                    <a href="crearcursos" class="btn btn-info">Agregar cursos</a>
+                    <a href="crearasignaturas" class="btn btn-info">Agregar Asignaturas</a>
                 </div>
             </div>
             <?php

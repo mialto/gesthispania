@@ -6,6 +6,7 @@ if(isset($_SESSION['logado']) && $_SESSION['logado']=='si' && $_SESSION['rol'] =
     menu();
     ?>
     <div class="container mt-5">
+        <div class="separador50"></div>
         <div class="row mt-5">
             <div class="col-sm-12 mt-4">
                 <h1>Crear Curso</h1>

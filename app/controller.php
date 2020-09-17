@@ -92,6 +92,52 @@ function mostrarCursos(){
 }
 
 /**
+ * pinta las asignaturas
+ */
+function mostrarAsignaturas(){
+    $mysqli = conexion();
+    $sentencia = "SELECT asignaturas.*, cursos.curso, cursos.titulacion, cursos.anno_academico FROM `asignaturas` INNER JOIN cursos ON asignaturas.curso=cursos.id ORDER BY asignaturas.nombre DESC ";
+    if(!($resultado = $mysqli->query($sentencia))) {
+        echo "Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error . "\n";
+        exit;
+    }
+    ?>
+    <table id="myTable" class="display dataTable no-footer" style="width:100%" role="grid" aria-describedby="example_info">
+        <thead>
+            <tr role="row">
+                <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 113.717px;" aria-sort="ascending" aria-label="">Nombre</th>
+                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 109.633px;" aria-label="">Créditos</th>
+                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 252.517px;" aria-label="">Duracion</th>
+                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 115.067px;" aria-label="">Curso</th>
+            </tr>
+        </thead>
+        <tbody>
+    <?php
+    $contador = 1;
+    while($fila = $resultado->fetch_array()) {
+        if($contador%2 == 0){
+            echo '<tr role="row" class="odd">';
+        }else{
+            echo '<tr role="row" class="even">';
+        }
+        ?>
+            <td class="sorting_1 sorting_2"><?php echo $fila['nombre']?></td>
+            <td><?php echo $fila['creditos']; ?></td>
+            <td><?php echo $fila['duracion']?></td>
+            <td><?php echo $fila['curso'] . " " . $fila['titulacion'] . " " . $fila['anno_academico'];?></td>
+        </tr>
+        <?php
+        $contador++;
+    }
+    ?>
+        </tbody>
+	</table>
+    <?php
+    $resultado->close();
+    $mysqli->close();
+}
+
+/**
  * pinta las titulaciones ordenadas por nombre
  */
 function mostrarTitulaciones(){
@@ -131,6 +177,27 @@ function optionsTitulaciones(){
     while($fila = $resultado->fetch_array()) {
         ?>
         <option value="<?php echo $fila['titulacion'];?>"><?php echo $fila['titulacion'];?></option>
+        <?php
+    }
+    $resultado->close();
+    $mysqli->close();
+}
+
+/**
+ * crea las opciones de los cursos por cursos y titulaciones
+ */
+function optionsCursos(){
+    $mysqli = conexion();
+    $sentencia = "SELECT * FROM cursos ORDER BY titulacion ASC, anno_academico ASC";
+    if(!($resultado = $mysqli->query($sentencia))) {
+        echo "Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error . "\n";
+        exit;
+    }
+    ?>
+    <?php
+    while($fila = $resultado->fetch_array()) {
+        ?>
+        <option value="<?php echo $fila['id'];?>"><?php echo $fila['curso'] . " " . $fila['titulacion'] . " " . $fila['anno_academico'];?></option>
         <?php
     }
     $resultado->close();

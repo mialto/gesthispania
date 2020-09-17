@@ -17,10 +17,12 @@ function cabecera($vista='general'){
         <title>GestHispania</title>
         <!--Introducir el css-->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.3/css/bootstrap-select.css" />
         <!--Introducir el javascript-->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.3/js/bootstrap-select.js"></script>
         <!--css y js propios-->
         <?php
         if($vista == "index"){
@@ -64,13 +66,13 @@ function menu($vista='general'){
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a href="titulaciones" class="nav-link">Titulaciones</a></li>   
                     <li class="nav-item"><a href="cursos" class="nav-link">Cursos</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Asignaturas</a></li>
+                    <li class="nav-item"><a href="asignaturas" class="nav-link">Asignaturas</a></li>
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbardrop"><i class="fa fa-user" aria-hidden="true"></i> <?php echo " " . $_SESSION['nombre'];?></a>
                         <div class="dropdown-menu">
                             <a href="perfil" class="dropdown-item">Perfil</a>
                             <a href="modificarusuario" class="dropdown-item">Editar perfil</a>
-                            <a href="cerrar.php" class="dropdown-item">Salir</a>
+                            <a href="cerrar" class="dropdown-item">Salir</a>
                         </div>
                     </li>
                 </ul> 
