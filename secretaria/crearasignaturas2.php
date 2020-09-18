@@ -40,7 +40,7 @@ if(isset($_SESSION['logado']) && $_SESSION['logado']=='si'){
             header("Location: asignaturas.php");
         }else{
             $mysqli = conexion();
-            $sentencia = "INSERT INTO asignaturas (nombre, creditos, duracion, curso) VALUES ('$nombre','$creditos','$duracion','$curso')";
+            $sentencia = "INSERT INTO asignaturas (nombre, creditos, duracion, curso, activa) VALUES ('$nombre','$creditos','$duracion','$curso', '1')";
             if(!($resultado = $mysqli->query($sentencia))) {
                 echo "Error al ejecutar la sentencia <b>$sentencia</b>;: " . $mysqli->error . "\n";
                 exit;
