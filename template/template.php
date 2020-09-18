@@ -91,16 +91,16 @@ function pie($vista='general'){
         </main>
         <footer class="bg-dark">
             <div class="container">
-                <div class="row">
+                <div class="row align-items-center">
                     <div class="col-md-4">
-                        <p>Desarrollado por: Miguel Ángel López Torralba<br><a href="mailto:miguel.a.torralba@gmail.com">miguel.a.torralba@gmail.com</a></p>
-                    <?php
-                    if($vista == 'index'){
-                        echo '<a href="http://mialtoweb.es" target="_blank"><img src="assets/img/mialtoweblogo.png"></a>';
-                    }else{
-                        echo '<a href="http://mialtoweb.es" target="_blank"><img src="../assets/img/mialtoweblogo.png"></a>';
-                    }
-                    ?>
+                        <p class="pie_texto">Desarrollado por: Miguel Ángel López Torralba<br><a href="mailto:miguel.a.torralba@gmail.com">miguel.a.torralba@gmail.com</a></p>
+                        <?php
+                        if($vista == 'index'){
+                            echo '<a href="http://mialtoweb.es" target="_blank"><img src="assets/img/mialtoweblogo.png" class="milogo"></a>';
+                        }else{
+                            echo '<a href="http://mialtoweb.es" target="_blank"><img src="../assets/img/mialtoweblogo.png" class="milogo"></a>';
+                        }
+                        ?>
                     </div>
                     <div class="col-md-4">
                     </div>

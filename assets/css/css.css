@@ -16,6 +16,10 @@ footer{
     height: 40px;
 }
 
+.milogo{
+    width:90px;
+}
+
 .mostrar_datos{
     font-size:20px;
 }
@@ -23,6 +27,11 @@ footer{
 .nav-link{
     padding:5px;
     color: #fff;
+}
+
+.pie_texto{
+    color:#fff;
+    font-size: 12px;
 }
 
 .separador50{
