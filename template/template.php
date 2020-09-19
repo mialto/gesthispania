@@ -58,7 +58,7 @@ function menu($vista='general'){
         if(isset($_SESSION['logado']) && $_SESSION['logado'] == 'si'){
         ?>
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top ">
-            <a href="#" class="navbar-brand"><img src="../assets/img/gest.png" class="logo_cabecera"></a>
+            <a href="index" class="navbar-brand"><img src="../assets/img/gest.png" class="logo_cabecera"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#colapsado">
                 <span class="navbar-toggler-icon"></span>
             </button>

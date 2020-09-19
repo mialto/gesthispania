@@ -7,7 +7,6 @@ if(isset($_SESSION['logado']) && $_SESSION['logado']=='si'){
         $titulacion = $_POST['titulacion'];
         $duracion = $_POST['duracion'];
         $anno = $_POST['anno'];
-        
         $errores = array();
 
         //limpiamos los campos de posibles inyecciones
@@ -39,8 +38,9 @@ if(isset($_SESSION['logado']) && $_SESSION['logado']=='si'){
             <?php
             header("Location: crearcursos.php");
         }else{
+            $anno_inicio = substr($anno, 0, 4); 
             $mysqli = conexion();
-            $sentencia = "INSERT INTO cursos (curso, titulacion, duracion, anno_academico) VALUES ('$curso','$titulacion','$duracion','$anno')";
+            $sentencia = "INSERT INTO cursos (curso, titulacion, duracion, anno_academico, anno_inicio) VALUES ('$curso','$titulacion','$duracion','$anno', '$anno_inicio')";
             if(!($resultado = $mysqli->query($sentencia))) {
                 echo "Error al ejecutar la sentencia <b>$sentencia</b>;: " . $mysqli->error . "\n";
                 exit;

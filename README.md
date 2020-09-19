@@ -11,6 +11,11 @@ Para instalar la aplicación sigue los siguientes pasos
 
 La aplicación ya estará lista con algunos datos de muestra en la BBDD
 
+## login de usuario pruebas
+usuario: test@test.es
+
+contraseña: asdf12345_
+
 ## Login de administrador
 usuario: admin@admin.es
 
@@ -69,9 +74,11 @@ tiene los campos:
 La aplicación web contará con una página donde se listen las asignaturas.
 
 ## Algunas mejoras que podrían hacerse
-Al tratarse de una prueba no he ido más allá de lo que solicitaban, pero se pueden hacer lás siguiente mejoras.
+Al tratarse de una prueba no he ido más allá de lo que solicitaban debido a la falta de tiempo por estar haciendo un curso de Drupal que me caducaba en tiempo, pero se pueden hacer lás siguiente mejoras.
 
-- crear un recordar contraseña
+- crear un he olvidado mi contraseña
+- hacer que el correo electronico sea unico comprobando que no se peuda registrar dos veces
+- hacer una página donde aparezcan solo la asignaturas matriculadas por el usuario
 - hacer que el admin pueda modificar el nombre de cursos, titulaciones y asignaturas (no venía como requisito y por tiempo no lo he añadido, los updates de modificación de datos se encuentran en la modificación de usuario, supongo que por ello no estan)
 - posibilidad de crear expedientes de los alumnos o de contar los creditos de matriculacion por cursos, marcando mínimos para acceder a becas o el maximo anual
 

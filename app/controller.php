@@ -270,7 +270,7 @@ function modificarAsignaturas($id){
                         <p>¿Esta seguro que quiere eliminar la asignatura <br>
                         <b><?php echo $fila['nombre'];?></b> del curso <br>
                         <b><?php echo $fila['curso'] . " " . $fila['titulacion'] . " " . $fila['anno_academico'];?></b>?</p>
-                        <center><a href="eliminarasignatura?id_asignatura=<?php echo $fila['id'];?>&id_curso=<?php echo $id ?>" class="btn btn-success btn-sm">Aceptar</a> <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cerrar</button></center>
+                        <a href="eliminarasignatura?id_asignatura=<?php echo $fila['id'];?>&id_curso=<?php echo $id ?>" class="btn btn-success btn-sm">Aceptar</a> <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cerrar</button>
                         <small>Esta acción dejará la asignatura para su libre asignacion a otro curso</small>
                     </div>
                     <!--footer-->
@@ -343,7 +343,7 @@ function asignaturasSinAsignar($id){
                     <div class="modal-body">
                         <p>¿Esta seguro que quiere eliminar la asignatura <br>
                         <b><?php echo $fila['nombre'];?></b> al curso?</p>
-                        <center><a href="asignarasignatura?id_asignatura=<?php echo $fila['id'];?>&id_curso=<?php echo $id ?>" class="btn btn-success btn-sm">Aceptar</a> <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cerrar</button></center>
+                        <a href="asignarasignatura?id_asignatura=<?php echo $fila['id'];?>&id_curso=<?php echo $id ?>" class="btn btn-success btn-sm">Aceptar</a> <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cerrar</button>
                         
                     </div>
                     <!--footer-->
@@ -353,6 +353,132 @@ function asignaturasSinAsignar($id){
                 </div>
             </div>
         </div>
+        <?php
+        $contador++;
+    }
+    ?>
+        </tbody>
+	</table>
+    <?php
+    $resultado->close();
+    $mysqli->close();
+}
+
+/**
+ * comprueba si el usuario esta matriculado o no
+ * args id_usuario id_asignatura
+ * return string $matriculado
+ */
+function comprobarMatriculacion($id_usuario, $id_asignatura){
+    $mysqli = conexion();
+    $sentencia2 = "SELECT * FROM matriculaciones WHERE id_usuario='$id_usuario' AND id_asignatura='$id_asignatura'";
+    if(!($resultado2 = $mysqli->query($sentencia2))) {
+        echo "Error al ejecutar la sentencia <b>$sentencia2</b>: " . $mysqli->error . "\n";
+        exit;
+    }
+    $numfilas = $resultado2->num_rows;
+    $resultado2->close();
+    if($numfilas>0){
+        $matriculado = "Matriculado";
+    }else{
+        $matriculado = "Sin matricular";
+    }
+    return $matriculado;
+}
+
+
+/**
+ * muestra las asignaturas por cursos para matricularse
+ */
+function mostrarCursosMatriculacion(){
+    $mysqli = conexion();
+    $sentencia = "SELECT asignaturas.*, cursos.curso, cursos.titulacion, cursos.anno_academico, cursos.anno_inicio FROM `asignaturas` INNER JOIN cursos ON asignaturas.curso=cursos.id WHERE asignaturas.activa=1 ORDER BY cursos.titulacion ASC, cursos.anno_inicio DESC";
+    if(!($resultado = $mysqli->query($sentencia))) {
+        echo "Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error . "\n";
+        exit;
+    }
+    $contador = 1;
+    while($fila = $resultado->fetch_array()) {
+        $anno_actual = date('Y');
+        $matriculado = comprobarMatriculacion($_SESSION['id'], $fila['id']);
+        $identificador_curso_tupla = $fila['curso'] . " " . $fila['titulacion'] . " " . $fila['anno_academico'];
+        if(!isset($identificador_curso) || $identificador_curso_tupla != $identificador_curso){
+            $identificador_curso = $fila['curso'] . " " . $fila['titulacion'] . " " . $fila['anno_academico'];
+            if($contador>1){
+                echo "</table><hr><div class='separador50'></div>";
+                
+            }
+            
+            echo "<h3>" . $identificador_curso . "</h3>";
+            ?>
+            <table class="table table-responsive-md">
+                <thead>
+                    <th>Asignatura</th>
+                    <th>Créditos</th>
+                    <th>Duración</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </thead>
+                <?php
+                if($matriculado == 'Matriculado'){
+                    echo '<tr style="background: rgba(20,200,20,0.1)">';
+                }else{
+                    echo '<tr style="background: rgba(250,250,0,0.1)">';
+                }
+                ?>
+                    <td><?php echo $fila['nombre'];?></td>
+                    <td><?php echo $fila['creditos'];?></td>
+                    <td><?php echo $fila['duracion'];?></td>
+                    <td><?php 
+                        echo $matriculado;
+                        ?>
+                    </td>
+                    <td><?php 
+                        if($fila['anno_inicio'] < $anno_actual){
+                            echo "NO HAY ACCIONES DISPONIBLES";
+                        }else{
+                            if($matriculado == 'Matriculado'){
+                                echo "<a href='matricularse?accion=no&&id_usuario=" . $_SESSION['id'] . " &&id_asignatura=" . $fila['id'] . "' class='btn btn-sm btn-danger'>Desmatricularse</a>";
+                            }else{
+                                echo "<a href='matricularse?accion=si&&id_usuario=" . $_SESSION['id'] . " &&id_asignatura=" . $fila['id'] . "' class='btn btn-sm btn-success'>Matricularse</a>";
+                            }
+                        }
+                    ?></td>
+                </tr>
+            <?php
+        }elseif($identificador_curso_tupla == $identificador_curso){
+            
+            if($matriculado == 'Matriculado'){
+                echo '<tr style="background: rgba(20,200,20,0.1)">';
+            }else{
+                echo '<tr style="background: rgba(250,250,0,0.1)">';
+            }
+        
+            ?>
+            
+                    <td><?php echo $fila['nombre'];?></td>
+                    <td><?php echo $fila['creditos'];?></td>
+                    <td><?php echo $fila['duracion'];?></td>
+                    <td><?php 
+                        echo $matriculado;
+                        ?>
+                    </td>
+                    <td><?php 
+                        if($fila['anno_inicio'] < $anno_actual){
+                            echo "NO HAY ACCIONES DISPONIBLES";
+                        }else{
+                            if($matriculado == 'matriculado'){
+                                echo "<a href='matricularse?accion=no&&id_usuario=" . $_SESSION['id'] . " &&id_asignatura=" . $fila['id'] . "' class='btn btn-sm btn-danger'>Desatricularse</a>";
+                            }else{
+                                echo "<a href='matricularse?accion=si&&id_usuario=" . $_SESSION['id'] . " &&id_asignatura=" . $fila['id'] . "' class='btn btn-sm btn-success'>Matricularse</a>";
+                            }
+                        }
+                    ?></td>
+                </tr>
+            <?php 
+        }
+        ?>
+        
         <?php
         $contador++;
     }
