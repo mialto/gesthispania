@@ -392,7 +392,7 @@ function comprobarMatriculacion($id_usuario, $id_asignatura){
  */
 function mostrarCursosMatriculacion(){
     $mysqli = conexion();
-    $sentencia = "SELECT asignaturas.*, cursos.curso, cursos.titulacion, cursos.anno_academico, cursos.anno_inicio FROM `asignaturas` INNER JOIN cursos ON asignaturas.curso=cursos.id WHERE asignaturas.activa=1 ORDER BY cursos.titulacion ASC, cursos.anno_inicio DESC";
+    $sentencia = "SELECT asignaturas.*, cursos.curso, cursos.titulacion, cursos.anno_academico, cursos.anno_inicio FROM `asignaturas` INNER JOIN cursos ON asignaturas.curso=cursos.id WHERE asignaturas.activa=1 ORDER BY cursos.titulacion ASC, cursos.anno_inicio DESC, asignaturas.curso DESC";
     if(!($resultado = $mysqli->query($sentencia))) {
         echo "Error al ejecutar la sentencia <b>$sentencia</b>: " . $mysqli->error . "\n";
         exit;
@@ -467,8 +467,8 @@ function mostrarCursosMatriculacion(){
                         if($fila['anno_inicio'] < $anno_actual){
                             echo "NO HAY ACCIONES DISPONIBLES";
                         }else{
-                            if($matriculado == 'matriculado'){
-                                echo "<a href='matricularse?accion=no&&id_usuario=" . $_SESSION['id'] . " &&id_asignatura=" . $fila['id'] . "' class='btn btn-sm btn-danger'>Desatricularse</a>";
+                            if($matriculado == 'Matriculado'){
+                                echo "<a href='matricularse?accion=no&&id_usuario=" . $_SESSION['id'] . " &&id_asignatura=" . $fila['id'] . "' class='btn btn-sm btn-danger'>Desmatricularse</a>";
                             }else{
                                 echo "<a href='matricularse?accion=si&&id_usuario=" . $_SESSION['id'] . " &&id_asignatura=" . $fila['id'] . "' class='btn btn-sm btn-success'>Matricularse</a>";
                             }
