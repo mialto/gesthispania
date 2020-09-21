@@ -11,6 +11,7 @@ function conexion(){
     ";
     exit;
     }
+    $mysqli->set_charset("utf8");
     return $mysqli;
  
 }
